@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
       ProfileSchema = new Schema({
         user: {
           type: Schema.Types.ObjectId,
-          ref: 'users'
+          ref: 'user'
         },
         handle: {
           type: String,
@@ -29,7 +29,7 @@ const mongoose = require('mongoose'),
           required: true
         },
         bio: {
-          type: bio
+          type: String
         },
         githubUsername: {
           type: String

@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs'),
 			
 			validateRegisterInput = require('../../validation/register'),
 			validateLoginInput = require('../../validation/login'),
+			
 			User = require('../../models/User'),
 			keys = require('../../config/keys');
 
@@ -63,9 +64,9 @@ router.post('/register', (req, res) => {
 // @desc    Return JWT Token
 // @access  Public
 router.post('/login', (req, res) => {
-	const email = req.body.email;
-	const password = req.body.password;
-	const { errors, isValid } = validateLoginInput(req.body);
+	const email = req.body.email,
+				password = req.body.password,
+				{ errors, isValid } = validateLoginInput(req.body);
 
 	if(!isValid) {
 		return res
