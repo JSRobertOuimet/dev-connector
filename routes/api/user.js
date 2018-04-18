@@ -4,10 +4,10 @@ const bcrypt = require('bcryptjs'),
 			jwt = require('jsonwebtoken'),
 			gravatar = require('gravatar'),
 			passport = require('passport'),
-			
+
 			validateRegisterInput = require('../../validation/register'),
 			validateLoginInput = require('../../validation/login'),
-			
+
 			User = require('../../models/User'),
 			keys = require('../../config/keys');
 
@@ -79,7 +79,7 @@ router.post('/login', (req, res) => {
 		.then(user => {
 			if(!user) {
 				errors.email = 'User not found.';
-				
+
 				return res
 					.status(404)
 					.json(errors);
