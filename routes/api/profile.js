@@ -22,7 +22,7 @@ router.get('/all', (req, res) => {
 		.then(profiles => {
 			if(!profiles) {
 				errors.noProfile = 'No profile found.';
-				return res.status(404).json(errors);
+				res.status(404).json(errors);
 			}
 
 			res.json(profiles);
@@ -41,9 +41,7 @@ router.get('/handle/:handle', (req, res) => {
 		.then(profile => {
 			if(!profile) {
 				errors.noProfile = 'No profile found.';
-				res
-					.status(400)
-					.json(errors);
+				res.status(400).json(errors);
 			}
 
 			res.json(profile);
@@ -62,9 +60,7 @@ router.get('/user/:user_id', (req, res) => {
 		.then(profile => {
 			if(!profile) {
 				errors.noProfile = 'No profile found.';
-				res
-					.status(400)
-					.json(errors);
+				res.status(400).json(errors);
 			}
 
 			res.json(profile);
@@ -83,10 +79,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 		.then(profile => {
 			if(!profile) {
 				errors.noProfile = 'There is no profile for this user.';
-
-				return res
-					.status(404)
-					.json(errors);
+				res.status(404).json(errors);
 			}
 
 			res.json(profile);
@@ -102,9 +95,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 	const profileFields = {};
 
 	if(!isValid) {
-		return res
-			.status(400)
-			.json(errors);
+		return res.status(400).json(errors);
 	}
 
 	profileFields.user = req.user.id;
@@ -169,9 +160,7 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
 	const { errors, isValid } = validateExperienceInput(req.body);
 
 	if(!isValid) {
-		return res
-			.status(400)
-			.json(errors);
+		res.status(400).json(errors);
 	}
 
 	Profile
@@ -188,7 +177,9 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
 			};
 
 			profile.experience.unshift(newExp);
-			profile.save().then(profile => res.json(profile));
+			profile
+				.save()
+				.then(profile => res.json(profile));
 		});
 });
 
@@ -199,9 +190,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
 	const { errors, isValid } = validateEducationInput(req.body);
 
 	if(!isValid) {
-		return res
-			.status(400)
-			.json(errors);
+		res.status(400).json(errors);
 	}
 
 	Profile
@@ -218,7 +207,9 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
 			};
 
 			profile.education.unshift(newEdu);
-			profile.save().then(profile => res.json(profile));
+			profile
+				.save()
+				.then(profile => res.json(profile));
 		});
 });
 
@@ -248,7 +239,7 @@ router.delete('/education/:edu_id', passport.authenticate('jwt', { session: fals
 		.then(profile => {
 			const removeIndex = profile.education
 				.map(item => item.id)
-				.indexOf(req.params.exp_id);
+				.indexOf(req.params.edu_id);
 
 			profile.education.splice(removeIndex, 1);
 			profile.save().then(profile => res.json(profile));

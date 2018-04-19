@@ -6,7 +6,7 @@ const bodyParser = require('body-parser'),
       db = require('./config/keys').mongoURI,
       user = require('./routes/api/user'),
       profile = require('./routes/api/profile'),
-      post = require('./routes/api/post'),
+      posts = require('./routes/api/posts'),
 
       port = process.env.PORT || 5000,
       app = express();
@@ -24,6 +24,6 @@ app.use(bodyParser.json());
 
 app.use('/api/user', user);
 app.use('/api/profile', profile);
-app.use('/api/post', post);
+app.use('/api/posts', posts);
 
 app.listen(port, () => console.log(`Server listening on port ${port}...`));
