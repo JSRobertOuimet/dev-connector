@@ -11,6 +11,17 @@ const bcrypt = require('bcryptjs'),
 			User = require('../../models/User'),
 			keys = require('../../config/keys');
 
+// @route   GET api/user/current
+// @desc    Return current user
+// @access  Private
+router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+	res.json({
+		id: req.user.id,
+		name: req.user.name,
+		email: req.user.email
+	});
+});
+
 // @route   POST api/user/register
 // @desc    Register user
 // @access  Public
@@ -33,11 +44,15 @@ router.post('/register', (req, res) => {
 					.json(errors);
 			}
 			else {
-				const avatar = gravatar.url(req.body.email, {
-					size: '200',
-					rating: 'pg',
-					default: 'mm'
-				});
+				const avatar = gravatar.url(
+					req.body.email,
+					
+					{
+						size: '200',
+						rating: 'pg',
+						default: 'mm'
+					}
+				);
 
 				const newUser = new User({
 					name: req.body.name,
@@ -109,17 +124,6 @@ router.post('/login', (req, res) => {
 					}
 				});
 		});
-});
-
-// @route   GET api/user/current
-// @desc    Return current user
-// @access  Private
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-	res.json({
-		id: req.user.id,
-		name: req.user.name,
-		email: req.user.email
-	});
 });
 
 module.exports = router;
