@@ -300,7 +300,7 @@ In the WebStorm menu `Run` select `Edit Configurations...`. Then click `+` and s
 
 Start your app by running `npm start`, then press `^D` on macOS or `F9` on Windows and Linux or click the green debug icon to start debugging in WebStorm.
 
-The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine. 
+The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine.
 
 ## Formatting Code Automatically
 
@@ -388,7 +388,7 @@ For example:
 ### `Button.js`
 
 ```js
-import React, { Component } from 'react';
+import React, { Component } from 'react";
 
 class Button extends Component {
   render() {
@@ -403,8 +403,8 @@ export default Button; // Don’t forget to use export default!
 
 
 ```js
-import React, { Component } from 'react';
-import Button from './Button'; // Import a component from another file
+import React, { Component } from 'react";
+import Button from './Button"; // Import a component from another file
 
 class DangerButton extends Component {
   render() {
@@ -438,14 +438,14 @@ Here is an example:
 ### `moduleA.js`
 
 ```js
-const moduleA = 'Hello';
+const moduleA = 'Hello";
 
 export { moduleA };
 ```
 ### `App.js`
 
 ```js
-import React, { Component } from 'react';
+import React, { Component } from 'react";
 
 class App extends Component {
   handleClick = () => {
@@ -495,8 +495,8 @@ This project setup uses [Webpack](https://webpack.js.org/) for handling all asse
 ### `Button.js`
 
 ```js
-import React, { Component } from 'react';
-import './Button.css'; // Tell Webpack that Button.js uses these styles
+import React, { Component } from 'react";
+import './Button.css"; // Tell Webpack that Button.js uses these styles
 
 class Button extends Component {
   render() {
@@ -590,8 +590,8 @@ To enable importing files without using relative paths, you can add the  `--incl
 This will allow you to do imports like
 
 ```scss
-@import 'styles/_colors.scss'; // assuming a styles directory under src/
-@import 'nprogress/nprogress'; // importing a css file from the nprogress node module
+@import 'styles/_colors.scss"; // assuming a styles directory under src/
+@import 'nprogress/nprogress"; // importing a css file from the nprogress node module
 ```
 
 At this point you might want to remove all CSS files from the source control, and add `src/**/*.css` to your `.gitignore` file. It is generally a good practice to keep the build products outside of the source control.
@@ -650,8 +650,8 @@ To reduce the number of requests to the server, importing images that are less t
 Here is an example:
 
 ```js
-import React from 'react';
-import logo from './logo.png'; // Tell Webpack this JS file uses this image
+import React from 'react";
+import logo from './logo.png"; // Tell Webpack this JS file uses this image
 
 console.log(logo); // /logo.84287d09.png
 
@@ -777,8 +777,8 @@ yarn add react-bootstrap bootstrap@3
 Import Bootstrap CSS and optionally Bootstrap theme CSS in the beginning of your ```src/index.js``` file:
 
 ```js
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'bootstrap/dist/css/bootstrap.css";
+import 'bootstrap/dist/css/bootstrap-theme.css";
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 ```
@@ -786,7 +786,7 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 Import required React Bootstrap components within ```src/App.js``` file or your custom component files:
 
 ```js
-import { Navbar, Jumbotron, Button } from 'react-bootstrap';
+import { Navbar, Jumbotron, Button } from 'react-bootstrap";
 ```
 
 Now you are ready to use the imported React Bootstrap components within your component hierarchy defined in the render method. Here is an example [`App.js`](https://gist.githubusercontent.com/gaearon/85d8c067f6af1e56277c82d19fd4da7b/raw/6158dd991b67284e9fc8d70b9d973efe87659d72/App.js) redone using React Bootstrap.
@@ -1312,7 +1312,7 @@ To create tests, add `it()` (or `test()`) blocks with the name of the test and i
 Jest provides a built-in `expect()` global function for making assertions. A basic test could look like this:
 
 ```js
-import sum from './sum';
+import sum from './sum";
 
 it('sums numbers', () => {
   expect(sum(1, 2)).toEqual(3);
@@ -1330,9 +1330,9 @@ There is a broad spectrum of component testing techniques. They range from a “
 Different projects choose different testing tradeoffs based on how often components change, and how much logic they contain. If you haven’t decided on a testing strategy yet, we recommend that you start with creating simple smoke tests for your components:
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from 'react";
+import ReactDOM from 'react-dom";
+import App from './App";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -1362,8 +1362,8 @@ The adapter will also need to be configured in your [global setup file](#initial
 
 #### `src/setupTests.js`
 ```js
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { configure } from 'enzyme";
+import Adapter from 'enzyme-adapter-react-16";
 
 configure({ adapter: new Adapter() });
 ```
@@ -1373,9 +1373,9 @@ configure({ adapter: new Adapter() });
 Now you can write a smoke test with it:
 
 ```js
-import React from 'react';
-import { shallow } from 'enzyme';
-import App from './App';
+import React from 'react";
+import { shallow } from 'enzyme";
+import App from './App";
 
 it('renders without crashing', () => {
   shallow(<App />);
@@ -1389,9 +1389,9 @@ You can read the [Enzyme documentation](http://airbnb.io/enzyme/) for more testi
 Here is an example from Enzyme documentation that asserts specific output, rewritten to use Jest matchers:
 
 ```js
-import React from 'react';
-import { shallow } from 'enzyme';
-import App from './App';
+import React from 'react";
+import { shallow } from 'enzyme";
+import App from './App";
 
 it('renders welcome message', () => {
   const wrapper = shallow(<App />);
@@ -1425,7 +1425,7 @@ yarn add jest-enzyme
 Import it in [`src/setupTests.js`](#initializing-test-environment) to make its matchers available in every test:
 
 ```js
-import 'jest-enzyme';
+import 'jest-enzyme";
 ```
 
 ### Using Third Party Assertion Libraries
@@ -1435,8 +1435,8 @@ We recommend that you use `expect()` for assertions and `jest.fn()` for spies. I
 However, if you are used to other libraries, such as [Chai](http://chaijs.com/) and [Sinon](http://sinonjs.org/), or if you have existing code using them that you’d like to port over, you can import them normally like this:
 
 ```js
-import sinon from 'sinon';
-import { expect } from 'chai';
+import sinon from 'sinon";
+import { expect } from 'chai";
 ```
 
 and then use them in your tests like you normally do.
@@ -1675,7 +1675,7 @@ Use the following [`launch.json`](https://code.visualstudio.com/docs/editor/debu
       "name": "Debug CRA Tests",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",      
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
       "args": [
         "test",
         "--runInBand",
@@ -1805,7 +1805,7 @@ have decided that you would like to disable them for all your existing users,
 you can swap out the call to `registerServiceWorker()` in
 [`src/index.js`](src/index.js) first by modifying the service worker import:
 ```javascript
-import { unregister } from './registerServiceWorker';
+import { unregister } from './registerServiceWorker";
 ```
 and then call `unregister()` instead.
 After the user visits a page that has `unregister()`,
@@ -1989,7 +1989,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm run build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 
@@ -2401,16 +2401,16 @@ To add a specific Moment.js locale to your bundle, you need to import it explici
 For example:
 
 ```js
-import moment from 'moment';
-import 'moment/locale/fr';
+import moment from 'moment";
+import 'moment/locale/fr";
 ```
 
 If import multiple locales this way, you can later switch between them by calling `moment.locale()` with the locale name:
 
 ```js
-import moment from 'moment';
-import 'moment/locale/fr';
-import 'moment/locale/es';
+import moment from 'moment";
+import 'moment/locale/fr";
+import 'moment/locale/es";
 
 // ...
 
@@ -2429,7 +2429,7 @@ To resolve this:
 1. Open an issue on the dependency's issue tracker and ask that the package be published pre-compiled.
   * Note: Create React App can consume both CommonJS and ES modules. For Node.js compatibility, it is recommended that the main entry point is CommonJS. However, they can optionally provide an ES module entry point with the `module` field in `package.json`. Note that **even if a library provides an ES Modules version, it should still precompile other ES6 features to ES5 if it intends to support older browsers**.
 
-2. Fork the package and publish a corrected version yourself. 
+2. Fork the package and publish a corrected version yourself.
 
 3. If the dependency is small enough, copy it to your `src/` folder and treat it as application code.
 
