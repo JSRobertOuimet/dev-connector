@@ -251,4 +251,5 @@ router.delete('/', passport.authenticate('jwt', { session: false }), (req, res) 
 		})
 		.catch(err => res.json(err));
 });
+
 module.exports = router;
