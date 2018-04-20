@@ -95,7 +95,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 	const profileFields = {};
 
 	if(!isValid) {
-		return res.status(400).json(errors);
+		res.status(400).json(errors);
 	}
 
 	profileFields.user = req.user.id;
