@@ -51,8 +51,7 @@ router.post('/register', (req, res) => {
 					bcrypt.hash(newUser.password, salt, (err, hash) => {
 						if(err) throw err;
 						newUser.password = hash;
-						newUser
-							.save()
+						newUser.save()
 							.then(user => res.json(user))
 							.catch(err => console.log(err));
 					});
@@ -73,15 +72,13 @@ router.post('/login', (req, res) => {
 		res.status(400).json(errors);
 	}
 
-	User
-		.findOne({ email })
+	User.findOne({ email })
 		.then(user => {
 			if(!user) {
 				errors.email = 'User not found.';
 				res.status(404).json(errors);
 			}
-			bcrypt
-				.compare(password, user.password)
+			bcrypt.compare(password, user.password)
 				.then(isMatch => {
 					if(isMatch) {
 						const payload = {

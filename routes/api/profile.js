@@ -16,8 +16,7 @@ const express = require('express'),
 router.get('/all', (req, res) => {
 	const errors = {};
 
-	Profile
-		.find()
+	Profile.find()
 		.populate('user', ['name', 'avatar'])
 		.then(profiles => {
 			if(!profiles) {
@@ -134,8 +133,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 			}
 			// Creating a new profile
 			else {
-				Profile
-					.findOne({ handle: profileFields.handle })
+				Profile.findOne({ handle: profileFields.handle })
 					.then(profile => {
 						// Check if handle already exists
 						if(profile) {
@@ -163,8 +161,7 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
 		res.status(400).json(errors);
 	}
 
-	Profile
-		.findOne({ user: req.user.id })
+	Profile.findOne({ user: req.user.id })
 		.then(profile => {
 			const newExp = {
 				company: req.body.company,
@@ -193,8 +190,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
 		res.status(400).json(errors);
 	}
 
-	Profile
-		.findOne({ user: req.user.id })
+	Profile.findOne({ user: req.user.id })
 		.then(profile => {
 			const newEdu = {
 				school: req.body.school,
@@ -207,8 +203,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
 			};
 
 			profile.education.unshift(newEdu);
-			profile
-				.save()
+			profile.save()
 				.then(profile => res.json(profile));
 		});
 });
@@ -217,8 +212,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
 // @desc    Delete experience from profile
 // @access  Private
 router.delete('/experience/:exp_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-	Profile
-		.findOne({ user: req.user.id })
+	Profile.findOne({ user: req.user.id })
 		.then(profile => {
 			const removeIndex = profile.experience
 				.map(item => item.id)
@@ -234,8 +228,7 @@ router.delete('/experience/:exp_id', passport.authenticate('jwt', { session: fal
 // @desc    Delete education from profile
 // @access  Private
 router.delete('/education/:edu_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-	Profile
-		.findOne({ user: req.user.id })
+	Profile.findOne({ user: req.user.id })
 		.then(profile => {
 			const removeIndex = profile.education
 				.map(item => item.id)
@@ -251,8 +244,7 @@ router.delete('/education/:edu_id', passport.authenticate('jwt', { session: fals
 // @desc    Delete user and profile
 // @access  Private
 router.delete('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-	Profile
-		.findOneAndRemove({ user: req.user.id })
+	Profile.findOneAndRemove({ user: req.user.id })
 		.then(() => {
 			User.findOneAndRemove({ _id: req.user.id })
 				.then(() => res.json({ message: 'User and profile successfully deleted.' }));
