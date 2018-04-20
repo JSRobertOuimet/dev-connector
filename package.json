@@ -4,10 +4,9 @@
   "description": "Social network for developers.",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
-    "start": "node server.js",
+    "setup": "npm install && cd client && npm install",
     "server": "nodemon server.js",
-    "client": "npm start --prefix client",
+    "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Jean-Simon Robert Ouimet",
