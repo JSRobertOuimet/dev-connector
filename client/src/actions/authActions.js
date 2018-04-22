@@ -40,3 +40,9 @@ export const setCurrentUser = decoded => {
     payload: decoded
   };
 };
+
+export const logoutUser = () => dispatch => {
+  localStorage.removeItem("token");
+  setAuthToken(false);
+  dispatch(setCurrentUser({}));
+};
