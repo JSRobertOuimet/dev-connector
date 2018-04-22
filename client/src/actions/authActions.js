@@ -41,7 +41,7 @@ export const setCurrentUser = decoded => {
   };
 };
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = history => dispatch => {
   localStorage.removeItem("token");
   setAuthToken(false);
   dispatch(setCurrentUser({}));
