@@ -4,22 +4,25 @@ import propTypes from "prop-types";
 
 const TextAreaFieldGroupd = ({
   label,
+  id,
   name,
   value,
-  placeholder,
   info,
   error,
   onChange
 }) => {
   return (
     <div className="form-group">
+      <label htmlFor={name}>
+        {label}
+      </label>
       <textarea
         className={classnames("form-control", {
           "is-invalid": error
         })}
+        id={id}
         name={name}
         value={value}
-        placeholder={placeholder}
         onChange={onChange}
       />
       { info && <small className="form-text text-muted">{info}</small> }
@@ -29,10 +32,10 @@ const TextAreaFieldGroupd = ({
 };
 
 TextAreaFieldGroupd.propTypes = {
-  label: propTypes.string,
+  label: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
   value: propTypes.string.isRequired,
-  placeholder: propTypes.string,
   error: propTypes.string,
   info: propTypes.string,
   onChange: propTypes.func.isRequired

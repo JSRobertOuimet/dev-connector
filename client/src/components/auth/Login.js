@@ -59,17 +59,19 @@ class Login extends Component {
               <p className="lead text-center">Sign in to your DevConnector account</p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
+                  label="Email"
+                  id="email"
                   name="email"
                   value={this.state.email}
-                  placeholder="Email Address"
                   onChange={this.onChange}
                   error={errors.email}
                 />
                 <TextFieldGroup
+                  label="Password"
+                  id="password"
                   name="password"
                   type="password"
                   value={this.state.password}
-                  placeholder="Password"
                   onChange={this.onChange}
                   error={errors.password}
                 />

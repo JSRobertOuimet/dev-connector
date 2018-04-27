@@ -50,7 +50,7 @@ class Register extends Component {
 
   render() {
     const { errors } = this.state;
-    
+
     return (
       <div className="register">
         <div className="container">
@@ -60,33 +60,37 @@ class Register extends Component {
               <p className="lead text-center">Create your DevConnector account</p>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
+                  label="Name"
+                  id="name"
                   name="name"
                   value={this.state.name}
-                  placeholder="Name"
                   onChange={this.onChange}
                   error={errors.name}
                 />
                 <TextFieldGroup
+                  label="Email"
+                  id="email"
                   name="email"
                   value={this.state.email}
-                  placeholder="Email"
                   onChange={this.onChange}
                   info="Use a Gravatar email to display your profile image."
                   error={errors.email}
                 />
                 <TextFieldGroup
+                  label="Password"
+                  id="password"
                   name="password"
                   type="password"
                   value={this.state.password}
-                  placeholder="Password"
                   onChange={this.onChange}
                   error={errors.password}
                 />
                 <TextFieldGroup
+                  label="Confirm Password"
+                  id="confirmPassword"
                   name="confirmPassword"
                   type="password"
                   value={this.state.confirmPassword}
-                  placeholder="Confirm Password"
                   onChange={this.onChange}
                   error={errors.confirmPassword}
                 />

@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import propTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreadFieldGroup from "../common/TextAreaFieldGroup";
+import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
-import { createProfile } from "../../actions/profileActions";
+import { getCurrentProfile, createProfile } from "../../actions/profileActions";
+import isEmpty from "../../validation/is-empty";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -33,9 +34,49 @@ class CreateProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  };
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+
+    if(nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+      const parsedSkills = profile.skills.join(",");
+
+      profile.company = !isEmpty(profile.company) ? profile.company : "";
+      profile.website = !isEmpty(profile.website) ? profile.website : "";
+      profile.location = !isEmpty(profile.location) ? profile.location : "";
+      profile.skills = !isEmpty(profile.skills) ? profile.skills : "";
+      profile.githubUsername = !isEmpty(profile.githubUsername) ? profile.githubUsername : "";
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
+
+      profile.social = !isEmpty(profile.social) ? profile.social : {};
+
+      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : "";
+      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : "";
+      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : "";
+      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : "";
+      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : "";
+
+      this.setState({
+        handle: profile.handle,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        status: profile.status,
+        skills: parsedSkills,
+        githubUsername: profile.githubUsername,
+        bio: profile.bio,
+        youtube: profile.youtube,
+        twitter: profile.twitter,
+        facebook: profile.facebook,
+        linkedin: profile.linkedin,
+        instagram: profile.instagram,
+      });
     }
   }
 
@@ -82,35 +123,45 @@ class CreateProfile extends Component {
       socialInputs = (
         <div>
           <InputGroup
+            label="YouTube"
             icon="fab fa-youtube"
+            id="youtube"
             name="youtube"
             value={this.state.youtube}
             onChange={this.onChange}
             error={errors.youtube}
           />
           <InputGroup
+            label="Twitter"
             icon="fab fa-twitter"
+            id="twitter"
             name="twitter"
             value={this.state.twitter}
             onChange={this.onChange}
             error={errors.twitter}
           />
           <InputGroup
+            label="Facebook"
             icon="fab fa-facebook"
+            id="facebook"
             name="facebook"
             value={this.state.facebook}
             onChange={this.onChange}
             error={errors.facebook}
           />
           <InputGroup
+            label="LinkdedIn"
             icon="fab fa-linkedin"
+            id="linkedin"
             name="linkedin"
             value={this.state.linkedin}
             onChange={this.onChange}
             error={errors.linkedin}
           />
           <InputGroup
+            label="Instagram"
             icon="fab fa-instagram"
+            id="instagram"
             name="instagram"
             value={this.state.instagram}
             onChange={this.onChange}
@@ -125,10 +176,11 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create your Profile</h1>
-              <p className="lead text-center">Make your profile stand out!</p>
+              <h1 className="display-4 text-center mb-3">Edit your Profile</h1>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
+                  label="Handle"
+                  id="handle"
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
@@ -136,6 +188,7 @@ class CreateProfile extends Component {
                   info="A unique handle for your profile URL."
                 />
                 <SelectListGroup
+                  label="Status"
                   options={statusOptions}
                   name="status"
                   value={this.state.status}
@@ -144,6 +197,8 @@ class CreateProfile extends Component {
                   info="How would you define yourself?"
                 />
                 <TextFieldGroup
+                  label="Company"
+                  id="company"
                   name="company"
                   value={this.state.company}
                   onChange={this.onChange}
@@ -151,6 +206,8 @@ class CreateProfile extends Component {
                   info="Where do you work?"
                 />
                 <TextFieldGroup
+                  label="Website"
+                  id="website"
                   name="website"
                   value={this.state.website}
                   onChange={this.onChange}
@@ -158,6 +215,8 @@ class CreateProfile extends Component {
                   info="Your website URL."
                 />
                 <TextFieldGroup
+                  label="Location"
+                  id="location"
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
@@ -165,6 +224,8 @@ class CreateProfile extends Component {
                   info="City, State, Country."
                 />
                 <TextFieldGroup
+                  label="Skills"
+                  id="location"
                   name="skills"
                   value={this.state.skills}
                   onChange={this.onChange}
@@ -172,13 +233,17 @@ class CreateProfile extends Component {
                   info="Use comma-seperated values (e.g. HTML, CSS, JavaScript)."
                 />
                 <TextFieldGroup
+                  label="GitHub Username"
+                  id="githubUsername"
                   name="githubUsername"
                   value={this.state.githubUsername}
                   onChange={this.onChange}
                   error={errors.githubUsername}
                   info="If your want to display your latest repositories."
                 />
-                <TextAreadFieldGroup
+                <TextAreaFieldGroup
+                  label="Bio"
+                  id="bio"
                   name="bio"
                   value={this.state.bio}
                   onChange={this.onChange}
@@ -214,6 +279,8 @@ class CreateProfile extends Component {
 }
 
 CreateProfile.propTypes = {
+  getCurrentProfile: propTypes.func.isRequired,
+  createProfile: propTypes.func.isRequired,
   profile: propTypes.object.isRequired,
   errors: propTypes.object.isRequired
 };
@@ -223,4 +290,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile));
+export default connect(mapStateToProps, { getCurrentProfile, createProfile })(withRouter(CreateProfile));

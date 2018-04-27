@@ -5,9 +5,9 @@ import propTypes from "prop-types";
 const TextFieldGroup = ({
   label,
   type,
+  id,
   name,
   value,
-  placeholder,
   disabled,
   info,
   error,
@@ -15,14 +15,17 @@ const TextFieldGroup = ({
 }) => {
   return (
     <div className="form-group">
+      <label htmlFor={name}>
+        {label}
+      </label>
       <input
         type={type}
+        id={name}
         className={classnames("form-control", {
           "is-invalid": error
         })}
         name={name}
         value={value}
-        placeholder={placeholder}
         disabled={disabled}
         onChange={onChange}
       />
@@ -33,10 +36,10 @@ const TextFieldGroup = ({
 };
 
 TextFieldGroup.propTypes = {
-  label: propTypes.string,
+  label: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
   value: propTypes.string.isRequired,
-  placeholder: propTypes.string,
   error: propTypes.string,
   info: propTypes.string,
   type: propTypes.string.isRequired,
