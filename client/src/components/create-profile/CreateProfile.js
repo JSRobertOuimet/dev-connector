@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import propTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreadFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
+import { createProfile } from "../../actions/profileActions";
 
 class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       handle: "",
+      status: "",
       company: "",
       website: "",
       location: "",
@@ -30,6 +33,12 @@ class CreateProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -37,13 +46,29 @@ class CreateProfile extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    console.log("Submitted.");
+    const profileData = {
+      handle: this.state.handle,
+      company: this.state.company,
+      website: this.state.website,
+      location: this.state.location,
+      status: this.state.status,
+      skills: this.state.skills,
+      githubUsername: this.state.githubUsername,
+      bio: this.state.bio,
+      youtube: this.state.youtube,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      linkedin: this.state.linkedin,
+      instagram: this.state.instagram,
+    };
+
+    this.props.createProfile(profileData, this.props.history);
   }
 
   render() {
     const { errors, displaySocialInputs } = this.state;
     const statusOptions = [
-      { label: "Select a status...", value: "0" },
+      { label: "Select a status...", value: "" },
       { label: "Junior Developer", value: "Junior Developer" },
       { label: "Senior Developer", value: "Senior Developer" },
       { label: "Manager", value: "Manager" },
@@ -120,6 +145,7 @@ class CreateProfile extends Component {
                   options={statusOptions}
                   name="status"
                   value={this.state.status}
+                  placeholder="Status"
                   onChange={this.onChange}
                   error={errors.status}
                   info="How would you define yourself?"
@@ -141,7 +167,7 @@ class CreateProfile extends Component {
                   info="Your website URL."
                 />
                 <TextFieldGroup
-                  name={this.state.location}
+                  name="location"
                   value={this.state.location}
                   placeholder="Location"
                   onChange={this.onChange}
@@ -149,7 +175,7 @@ class CreateProfile extends Component {
                   info="City, State, Country."
                 />
                 <TextFieldGroup
-                  name={this.state.skills}
+                  name="skills"
                   value={this.state.skills}
                   placeholder="Profile skills"
                   onChange={this.onChange}
@@ -157,7 +183,7 @@ class CreateProfile extends Component {
                   info="Use comma-seperated values (e.g. HTML, CSS, JavaScript)."
                 />
                 <TextFieldGroup
-                  name={this.state.githubUsername}
+                  name="githubUsername"
                   value={this.state.githubUsername}
                   placeholder="GitHub Username"
                   onChange={this.onChange}
@@ -174,6 +200,7 @@ class CreateProfile extends Component {
                 />
                 <div className="mb-3">
                   <button
+                    type="button"
                     onClick={() => {
                       this.setState(prevState => ({
                         displaySocialInputs: !prevState.displaySocialInputs
@@ -199,7 +226,7 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
+CreateProfile.propTypes = { 
   profile: propTypes.object.isRequired,
   errors: propTypes.object.isRequired
 };
@@ -209,4 +236,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile));
