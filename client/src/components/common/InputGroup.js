@@ -1,21 +1,11 @@
 import React from "react";
 import classnames from "classnames";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
-const InputGroup = ({
-  label,
-  icon,
-  type,
-  name,
-  value,
-  error,
-  onChange
-}) => {
+const InputGroup = ({ label, icon, type, name, value, error, onChange }) => {
   return (
     <div>
-      <label htmlFor={name}>
-        {label}
-      </label>
+      <label htmlFor={name}>{label}</label>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">
@@ -32,21 +22,21 @@ const InputGroup = ({
           value={value}
           onChange={onChange}
         />
-        { error && (<div className="invalid-feedback">{error}</div>) }
+        {error && <div className="invalid-feedback">{error}</div>}
       </div>
     </div>
   );
 };
 
-InputGroup.propTypes = {
-  label: propTypes.string.isRequired,
-  icon: propTypes.string.isRequired,
-  type: propTypes.string.isRequired,
-  id: propTypes.string.isRequired,
-  name: propTypes.string.isRequired,
-  value: propTypes.string,
-  error: propTypes.string,
-  onChange: propTypes.func.isRequired
+InputGroup.PropTypes = {
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  error: PropTypes.string,
+  onChange: PropTypes.func.isRequired
 };
 
 InputGroup.defaultProps = {

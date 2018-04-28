@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { addExperience } from "../../actions/profileActions";
 
 class AddExperience extends Component {
@@ -28,7 +28,7 @@ class AddExperience extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
       });
@@ -70,10 +70,10 @@ class AddExperience extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">Back</Link>
-              <h1 className="display-4 text-center">
-                Add Experience
-              </h1>
+              <Link to="/dashboard" className="btn btn-light">
+                Back
+              </Link>
+              <h1 className="display-4 text-center">Add Experience</h1>
               <p className="lead text-center">
                 Add your professional experience.
               </p>
@@ -158,10 +158,10 @@ class AddExperience extends Component {
   }
 }
 
-AddExperience.propTypes = {
-  addExperience: propTypes.func.isRequired,
-  profile: propTypes.object.isRequired,
-  errors: propTypes.object.isRequired
+AddExperience.PropTypes = {
+  addExperience: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -169,4 +169,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addExperience })(withRouter(AddExperience));
+export default connect(mapStateToProps, { addExperience })(
+  withRouter(AddExperience)
+);

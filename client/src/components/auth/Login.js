@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
 class Login extends Component {
   constructor() {
@@ -17,23 +17,23 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if(this.props.auth.isAuthenticated) {
+    if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.auth.isAuthenticated) {
+    if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
 
-    if(nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
 
   onChange(e) {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
@@ -56,7 +56,9 @@ class Login extends Component {
           <div className="row">
             <div className="col-md-4 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">Sign in to your DevConnector account</p>
+              <p className="lead text-center">
+                Sign in to your DevConnector account
+              </p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   label="Email"
@@ -85,10 +87,10 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
-  loginUser: propTypes.func.isRequired,
-  auth: propTypes.object.isRequired,
-  errors: propTypes.object.isRequired
+Login.PropTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

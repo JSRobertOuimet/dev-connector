@@ -3,7 +3,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
 class Register extends Component {
   constructor() {
@@ -20,19 +20,19 @@ class Register extends Component {
   }
 
   componentDidMount() {
-    if(this.props.auth.isAuthenticated) {
+    if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }
 
   onChange(e) {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
@@ -57,7 +57,9 @@ class Register extends Component {
           <div className="row">
             <div className="col-md-4 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your DevConnector account</p>
+              <p className="lead text-center">
+                Create your DevConnector account
+              </p>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   label="Name"
@@ -104,10 +106,10 @@ class Register extends Component {
   }
 }
 
-Register.propTypes = {
-  registerUser: propTypes.func.isRequired,
-  auth: propTypes.object.isRequired,
-  errors: propTypes.object.isRequired
+Register.PropTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

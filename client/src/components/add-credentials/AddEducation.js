@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import { addEducation } from "../../actions/profileActions";
 
 class AddEducation extends Component {
@@ -28,7 +28,7 @@ class AddEducation extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
       });
@@ -69,13 +69,11 @@ class AddEducation extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-8 m-auto">
-            <Link to="/dashboard" className="btn btn-light">Back</Link>
-            <h1 className="display-4 text-center">
-              Add Education
-            </h1>
-            <p className="lead text-center">
-              Add your education.
-            </p>
+            <Link to="/dashboard" className="btn btn-light">
+              Back
+            </Link>
+            <h1 className="display-4 text-center">Add Education</h1>
+            <p className="lead text-center">Add your education.</p>
             <form onSubmit={this.onSubmit}>
               <TextFieldGroup
                 label="School"
@@ -156,10 +154,10 @@ class AddEducation extends Component {
   }
 }
 
-AddEducation.propTypes = {
-  addEducation: propTypes.func.isRequired,
-  profile: propTypes.object.isRequired,
-  errors: propTypes.object.isRequired
+AddEducation.PropTypes = {
+  addEducation: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -167,4 +165,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addEducation })(withRouter(AddEducation));
+export default connect(mapStateToProps, { addEducation })(
+  withRouter(AddEducation)
+);

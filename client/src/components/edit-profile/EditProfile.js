@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
@@ -36,14 +36,14 @@ class CreateProfile extends Component {
 
   componentDidMount() {
     this.props.getCurrentProfile();
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
 
-    if(nextProps.profile.profile) {
+    if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
       const parsedSkills = profile.skills.join(",");
 
@@ -51,16 +51,28 @@ class CreateProfile extends Component {
       profile.website = !isEmpty(profile.website) ? profile.website : "";
       profile.location = !isEmpty(profile.location) ? profile.location : "";
       profile.skills = !isEmpty(profile.skills) ? profile.skills : "";
-      profile.githubUsername = !isEmpty(profile.githubUsername) ? profile.githubUsername : "";
+      profile.githubUsername = !isEmpty(profile.githubUsername)
+        ? profile.githubUsername
+        : "";
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
 
       profile.social = !isEmpty(profile.social) ? profile.social : {};
 
-      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : "";
-      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : "";
-      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : "";
-      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : "";
-      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : "";
+      profile.youtube = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : "";
+      profile.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : "";
+      profile.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : "";
+      profile.linkedin = !isEmpty(profile.social.linkedin)
+        ? profile.social.linkedin
+        : "";
+      profile.instagram = !isEmpty(profile.social.instagram)
+        ? profile.social.instagram
+        : "";
 
       this.setState({
         handle: profile.handle,
@@ -75,7 +87,7 @@ class CreateProfile extends Component {
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedin: profile.linkedin,
-        instagram: profile.instagram,
+        instagram: profile.instagram
       });
     }
   }
@@ -100,7 +112,7 @@ class CreateProfile extends Component {
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
-      instagram: this.state.instagram,
+      instagram: this.state.instagram
     };
 
     this.props.createProfile(profileData, this.props.history);
@@ -119,7 +131,7 @@ class CreateProfile extends Component {
 
     let socialInputs;
 
-    if(displaySocialInputs) {
+    if (displaySocialInputs) {
       socialInputs = (
         <div>
           <InputGroup
@@ -258,7 +270,8 @@ class CreateProfile extends Component {
                         displaySocialInputs: !prevState.displaySocialInputs
                       }));
                     }}
-                    className="btn btn-light">
+                    className="btn btn-light"
+                  >
                     Add Social Links
                   </button>
                   <span className="text-muted ml-2">(Optional)</span>
@@ -278,11 +291,11 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
-  getCurrentProfile: propTypes.func.isRequired,
-  createProfile: propTypes.func.isRequired,
-  profile: propTypes.object.isRequired,
-  errors: propTypes.object.isRequired
+CreateProfile.PropTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  createProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -290,4 +303,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, createProfile })(withRouter(CreateProfile));
+export default connect(mapStateToProps, { getCurrentProfile, createProfile })(
+  withRouter(CreateProfile)
+);
