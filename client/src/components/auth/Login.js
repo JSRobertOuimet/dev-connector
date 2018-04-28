@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 
 class Login extends Component {
   constructor() {
@@ -87,10 +87,10 @@ class Login extends Component {
   }
 }
 
-Login.PropTypes = {
-  loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+Login.propTypes = {
+  loginUser: propTypes.func.isRequired,
+  auth: propTypes.object.isRequired,
+  errors: propTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

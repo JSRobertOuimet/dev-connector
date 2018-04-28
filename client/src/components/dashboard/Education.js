@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { deleteEducation } from "../../actions/profileActions";
@@ -16,14 +15,20 @@ class Education extends Component {
         <td>{edu.school}</td>
         <td>{edu.degree}</td>
         <td>
-          <Moment format="Mo MMMM YYYY">{edu.from}</Moment>
-          {" "}&ndash;{" "}
-          {edu.to === null ? "Now" : (
-            <Moment format="Mo MMMM YYYY">{edu.to}</Moment>       
+          <Moment format="Mo MMMM YYYY">{edu.from}</Moment> &ndash;{" "}
+          {edu.to === null ? (
+            "Now"
+          ) : (
+            <Moment format="Mo MMMM YYYY">{edu.to}</Moment>
           )}
         </td>
         <td>
-          <button className="btn btn-danger float-right" onClick={this.onDeleteClick.bind(this, edu._id)}>Delete</button>
+          <button
+            className="btn btn-danger float-right"
+            onClick={this.onDeleteClick.bind(this, edu._id)}
+          >
+            Delete
+          </button>
         </td>
       </tr>
     ));
@@ -37,20 +42,18 @@ class Education extends Component {
               <th>School</th>
               <th>Degree</th>
               <th>Years</th>
-              <th></th>
+              <th />
             </tr>
           </thead>
-          <tbody>
-            { education }
-          </tbody>
+          <tbody>{education}</tbody>
         </table>
       </div>
     );
   }
 }
 
-Education.PropTypes = {
-  deleteEducation: PropTypes.func.isRequired
+Education.propTypes = {
+  deleteEducation: propTypes.func.isRequired
 };
 
 export default connect(null, { deleteEducation })(Education);

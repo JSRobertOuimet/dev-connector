@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { connect } from "react-redux";
 
 class Landing extends Component {
@@ -17,7 +17,7 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Developer Connector</h1>
+                <h1 className="display-3 mb-4">DevConnector</h1>
                 <p className="lead">
                   {" "}
                   Create a developer profile/portfolio, share posts and get help
@@ -39,8 +39,8 @@ class Landing extends Component {
   }
 }
 
-Landing.PropTypes = {
-  auth: PropTypes.object.isRequired
+Landing.propTypes = {
+  auth: propTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

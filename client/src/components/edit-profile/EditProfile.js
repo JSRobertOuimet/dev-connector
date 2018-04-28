@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
@@ -51,16 +51,28 @@ class CreateProfile extends Component {
       profile.website = !isEmpty(profile.website) ? profile.website : "";
       profile.location = !isEmpty(profile.location) ? profile.location : "";
       profile.skills = !isEmpty(profile.skills) ? profile.skills : "";
-      profile.githubUsername = !isEmpty(profile.githubUsername) ? profile.githubUsername : "";
+      profile.githubUsername = !isEmpty(profile.githubUsername)
+        ? profile.githubUsername
+        : "";
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
 
       profile.social = !isEmpty(profile.social) ? profile.social : {};
 
-      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : "";
-      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : "";
-      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : "";
-      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : "";
-      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : "";
+      profile.youtube = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : "";
+      profile.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : "";
+      profile.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : "";
+      profile.linkedin = !isEmpty(profile.social.linkedin)
+        ? profile.social.linkedin
+        : "";
+      profile.instagram = !isEmpty(profile.social.instagram)
+        ? profile.social.instagram
+        : "";
 
       this.setState({
         handle: profile.handle,
@@ -282,11 +294,11 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.PropTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
-  createProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+CreateProfile.propTypes = {
+  getCurrentProfile: propTypes.func.isRequired,
+  createProfile: propTypes.func.isRequired,
+  profile: propTypes.object.isRequired,
+  errors: propTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

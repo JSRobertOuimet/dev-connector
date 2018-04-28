@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { deleteExperience } from "../../actions/profileActions";
@@ -15,14 +15,20 @@ class Experience extends Component {
         <td>{exp.company}</td>
         <td>{exp.title}</td>
         <td>
-          <Moment format="Mo MMMM YYYY">{exp.from}</Moment>
-          {" "}&ndash;{" "}
-          {exp.to === null ? "Now" : (
-            <Moment format="Mo MMMM YYYY">{exp.to}</Moment>       
+          <Moment format="Mo MMMM YYYY">{exp.from}</Moment> &ndash;{" "}
+          {exp.to === null ? (
+            "Now"
+          ) : (
+            <Moment format="Mo MMMM YYYY">{exp.to}</Moment>
           )}
         </td>
         <td>
-          <button className="btn btn-danger float-right" onClick={this.onDeleteClick.bind(this, exp._id)}>Delete</button>
+          <button
+            className="btn btn-danger float-right"
+            onClick={this.onDeleteClick.bind(this, exp._id)}
+          >
+            Delete
+          </button>
         </td>
       </tr>
     ));
@@ -36,20 +42,18 @@ class Experience extends Component {
               <th>Company</th>
               <th>Title</th>
               <th>Years</th>
-              <th></th>
+              <th />
             </tr>
           </thead>
-          <tbody>
-            { experience }
-          </tbody>
+          <tbody>{experience}</tbody>
         </table>
       </div>
     );
   }
 }
 
-Experience.PropTypes = {
-  deleteExperience: PropTypes.func.isRequired
+Experience.propTypes = {
+  deleteExperience: propTypes.func.isRequired
 };
 
 export default connect(null, { deleteExperience })(Experience);

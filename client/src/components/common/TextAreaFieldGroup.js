@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 
 const TextAreaFieldGroupd = ({
   label,
@@ -29,14 +29,14 @@ const TextAreaFieldGroupd = ({
   );
 };
 
-TextAreaFieldGroupd.PropTypes = {
-  label: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  error: PropTypes.string,
-  info: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+TextAreaFieldGroupd.propTypes = {
+  label: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
+  value: propTypes.string.isRequired,
+  error: propTypes.string,
+  info: propTypes.string,
+  onChange: propTypes.func.isRequired
 };
 
 export default TextAreaFieldGroupd;

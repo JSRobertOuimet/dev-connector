@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 
 const SelectListGroup = ({
   label,
@@ -36,14 +36,14 @@ const SelectListGroup = ({
   );
 };
 
-SelectListGroup.PropTypes = {
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired,
-  info: PropTypes.string,
-  error: PropTypes.string
+SelectListGroup.propTypes = {
+  label: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
+  value: propTypes.string.isRequired,
+  onChange: propTypes.func.isRequired,
+  options: propTypes.array.isRequired,
+  info: propTypes.string,
+  error: propTypes.string
 };
 
 export default SelectListGroup;
