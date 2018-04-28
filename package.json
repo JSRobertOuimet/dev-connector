@@ -4,7 +4,7 @@
   "description": "Social network for developers.",
   "main": "server.js",
   "scripts": {
-    "setup": "npm install && cd client && npm install",
+    "setup": "npm i && cd client && npm i",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""

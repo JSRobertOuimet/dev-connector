@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
@@ -51,28 +51,16 @@ class CreateProfile extends Component {
       profile.website = !isEmpty(profile.website) ? profile.website : "";
       profile.location = !isEmpty(profile.location) ? profile.location : "";
       profile.skills = !isEmpty(profile.skills) ? profile.skills : "";
-      profile.githubUsername = !isEmpty(profile.githubUsername)
-        ? profile.githubUsername
-        : "";
+      profile.githubUsername = !isEmpty(profile.githubUsername) ? profile.githubUsername : "";
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
 
       profile.social = !isEmpty(profile.social) ? profile.social : {};
 
-      profile.youtube = !isEmpty(profile.social.youtube)
-        ? profile.social.youtube
-        : "";
-      profile.twitter = !isEmpty(profile.social.twitter)
-        ? profile.social.twitter
-        : "";
-      profile.facebook = !isEmpty(profile.social.facebook)
-        ? profile.social.facebook
-        : "";
-      profile.linkedin = !isEmpty(profile.social.linkedin)
-        ? profile.social.linkedin
-        : "";
-      profile.instagram = !isEmpty(profile.social.instagram)
-        ? profile.social.instagram
-        : "";
+      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : "";
+      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : "";
+      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : "";
+      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : "";
+      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : "";
 
       this.setState({
         handle: profile.handle,
@@ -188,6 +176,9 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+              <Link to="/dashboard" className="btn btn-light">
+                Back
+              </Link>
               <h1 className="display-4 text-center mb-3">Edit your Profile</h1>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup

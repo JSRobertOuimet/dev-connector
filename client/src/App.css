@@ -1,5 +1,8 @@
-body {
-  height: 100vh;
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
 }
 
 img {
@@ -42,8 +45,6 @@ img {
   color: #bbb !important;
 }
 
-/* .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-} */
+td {
+  width: 25%;
+}
