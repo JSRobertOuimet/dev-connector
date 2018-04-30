@@ -83,6 +83,7 @@ class CreateProfile extends Component {
         <div>
           <InputGroup
             icon="fab fa-youtube"
+            id="youtube"
             name="youtube"
             value={this.state.youtube}
             onChange={this.onChange}
@@ -90,6 +91,7 @@ class CreateProfile extends Component {
           />
           <InputGroup
             icon="fab fa-twitter"
+            id="twitter"
             name="twitter"
             value={this.state.twitter}
             onChange={this.onChange}
@@ -97,6 +99,7 @@ class CreateProfile extends Component {
           />
           <InputGroup
             icon="fab fa-facebook"
+            id="facebook"
             name="facebook"
             value={this.state.facebook}
             onChange={this.onChange}
@@ -104,6 +107,7 @@ class CreateProfile extends Component {
           />
           <InputGroup
             icon="fab fa-linkedin"
+            id="linkedin"
             name="linkedin"
             value={this.state.linkedin}
             onChange={this.onChange}
@@ -111,6 +115,7 @@ class CreateProfile extends Component {
           />
           <InputGroup
             icon="fab fa-instagram"
+            id="instagram"
             name="instagram"
             value={this.state.instagram}
             onChange={this.onChange}
@@ -129,6 +134,7 @@ class CreateProfile extends Component {
               <p className="lead text-center">Make your profile stand out!</p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
+                  id="handle"
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
@@ -144,6 +150,7 @@ class CreateProfile extends Component {
                   info="How would you define yourself?"
                 />
                 <TextFieldGroup
+                  id="company"
                   name="company"
                   value={this.state.company}
                   onChange={this.onChange}
@@ -151,6 +158,7 @@ class CreateProfile extends Component {
                   info="Where do you work?"
                 />
                 <TextFieldGroup
+                  id="website"
                   name="website"
                   value={this.state.website}
                   onChange={this.onChange}
@@ -158,6 +166,7 @@ class CreateProfile extends Component {
                   info="Your website URL."
                 />
                 <TextFieldGroup
+                  id="location"
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
@@ -165,6 +174,7 @@ class CreateProfile extends Component {
                   info="City, State, Country."
                 />
                 <TextFieldGroup
+                  id="skills"
                   name="skills"
                   value={this.state.skills}
                   onChange={this.onChange}
@@ -172,6 +182,7 @@ class CreateProfile extends Component {
                   info="Use comma-seperated values (e.g. HTML, CSS, JavaScript)."
                 />
                 <TextFieldGroup
+                  id="githubUsername"
                   name="githubUsername"
                   value={this.state.githubUsername}
                   onChange={this.onChange}
@@ -179,6 +190,7 @@ class CreateProfile extends Component {
                   info="If your want to display your latest repositories."
                 />
                 <TextAreadFieldGroup
+                  id="bio"
                   name="bio"
                   value={this.state.bio}
                   onChange={this.onChange}

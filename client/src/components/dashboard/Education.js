@@ -11,11 +11,12 @@ class Education extends Component {
 
   render() {
     const education = this.props.education.map(edu => (
-      <tr key={edu.id}>
+      <tr key={edu._id}>
         <td>{edu.school}</td>
         <td>{edu.degree}</td>
         <td>
-          <Moment format="Mo MMMM YYYY">{edu.from}</Moment> &ndash;{" "}
+          <Moment format="Mo MMMM YYYY">{edu.from}</Moment>
+          &ndash;{" "}
           {edu.to === null ? (
             "Now"
           ) : (

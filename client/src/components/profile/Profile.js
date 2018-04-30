@@ -16,6 +16,12 @@ class Profile extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push("/page-not-found");
+    }
+  }
+
   render() {
     const { profile, loading } = this.props.profile;
     let profileContent;
@@ -34,9 +40,9 @@ class Profile extends Component {
             </div>
           </div>
           <ProfileHeader profile={profile} />
-          <ProfileAbout />
-          <ProfileCreds />
-          <ProfileGitHub />
+          <ProfileAbout profile={profile} />
+          <ProfileCreds education={profile.education} experience={profile.experience} />
+          { profile.githubUsername ? (<ProfileGitHub username={profile.githubUsername} />) : null }
         </div>
       );
     }
