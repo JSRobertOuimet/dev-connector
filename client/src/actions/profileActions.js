@@ -1,12 +1,18 @@
 import axios from "axios";
 import {
+  PROFILE_LOADING,
   GET_PROFILES,
   GET_PROFILE,
-  PROFILE_LOADING,
   SET_CURRENT_USER,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS
 } from "./types";
+
+export const setProfileLoading = () => {
+  return {
+    type: PROFILE_LOADING
+  };
+};
 
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
@@ -129,12 +135,6 @@ export const deleteEducation = (id) => dispatch => {
         payload: err.response.data
       })
     );
-};
-
-export const setProfileLoading = () => {
-  return {
-    type: PROFILE_LOADING
-  };
 };
 
 export const clearCurrentProfile = () => {
