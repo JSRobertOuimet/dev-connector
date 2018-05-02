@@ -32,7 +32,7 @@ class ProfileGitHub extends Component {
         <div className="row">
           <div className="col-md-6 mb-2">
             <h3>
-              <Link to={repo.html_url} className="text-info" target="_blank">
+              <Link to={repo.html_url} className="text-dark" target="_blank">
                 {repo.name}
               </Link>
             </h3>
@@ -56,9 +56,9 @@ class ProfileGitHub extends Component {
     return (
       <div>
         <hr />
-        <h3 className="mb-4">
+        <h2 className="mb-4 text-info">
           Latest GitHub Repos
-        </h3>
+        </h2>
         { repoItems }
       </div>
     );
