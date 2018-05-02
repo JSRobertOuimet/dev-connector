@@ -2,9 +2,9 @@ import axios from "axios";
 import {
   ADD_POST,
   GET_ERRORS
-} from "types";
+} from "./types";
 
-export const addPost = postData => {
+export const addPost = postData => dispatch => {
   axios
     .post("/api/posts", postData)
     .then(res =>
