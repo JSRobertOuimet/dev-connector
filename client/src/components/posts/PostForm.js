@@ -70,15 +70,15 @@ class PostForm extends Component {
   };
 };
 
-const mapStateToProps = state => ({
-  errors: state.errors,
-  auth: state.auth
-});
-
 PostForm.propTypes = {
   addPost: propTypes.func.isRequired,
   errors: propTypes.object.isRequired,
   auth: propTypes.object.isRequired
 };
+
+const mapStateToProps = state => ({
+  errors: state.errors,
+  auth: state.auth
+});
 
 export default connect(mapStateToProps, { addPost })(PostForm);

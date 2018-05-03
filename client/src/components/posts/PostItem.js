@@ -43,12 +43,8 @@ class PostItem extends Component {
             </a>
           </div>
           <div className="col-md-10">
-            <p className="lead">
-              {post.text}
-            </p>
-            <p className="text-muted">
-              {post.name}
-            </p>
+            <p className="lead">{post.text}</p>
+            <p className="text-muted">{post.name}</p>
             { showActions ? (
               <span>
                 <button type="button" className="btn btn-light mr-1" onClick={this.onLikeClick.bind(this, post._id) }>
@@ -70,7 +66,7 @@ class PostItem extends Component {
                     className="btn btn-danger"
                     onClick={this.onDeleteClick.bind(this, post._id)}
                   >
-                    <i className="fas fa-times" />
+                    Delete Post
                   </button>
                 ) : null }
               </span>
