@@ -76,8 +76,8 @@ const mapStateToProps = state => ({
 });
 
 PostForm.propTypes = {
-  errors: propTypes.object.isRequired,
   addPost: propTypes.func.isRequired,
+  errors: propTypes.object.isRequired,
   auth: propTypes.object.isRequired
 };
 
