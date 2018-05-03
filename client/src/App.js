@@ -21,6 +21,7 @@ import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
 import PageNotFound from "./components/page-not-found/PageNotFound";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 import Footer from "./components/layout/Footer";
 
 import "./App.css";
@@ -70,6 +71,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/feed" component={Posts} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/post/:id" component={Post} />
               </Switch>
               <Route exact path="/page-not-found" component={PageNotFound} />
             </div>

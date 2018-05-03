@@ -32,7 +32,7 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth } = this.props;
+    const { post, auth, showActions } = this.props;
 
     return (
       <div className="card card-body mb-3">
@@ -49,33 +49,41 @@ class PostItem extends Component {
             <p className="text-muted">
               {post.name}
             </p>
-            <button type="button" className="btn btn-light mr-1" onClick={this.onLikeClick.bind(this, post._id) }>
-              <i className={
-                classNames("fas fa-thumbs-up", {
-                  "text-info": this.findUserLike(post.likes)
-                })}
-              />
-              <span className="badge badge-light">{post.likes.length}</span>
-            </button>
-            <button type="button" className="btn btn-light mr-1" onClick={this.onRemoveLikeClick.bind(this, post._id) }>
-              <i className="text-secondary fas fa-thumbs-down" />
-            </button>
-            <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-              Comments
-            </Link>
-            { post.user === auth.user.id ? (
-              <button
-                className="btn btn-danger"
-                onClick={this.onDeleteClick.bind(this, post._id)}
-              >
-                <i className="fas fa-times" />
-              </button>
+            { showActions ? (
+              <span>
+                <button type="button" className="btn btn-light mr-1" onClick={this.onLikeClick.bind(this, post._id) }>
+                  <i className={
+                    classNames("fas fa-thumbs-up", {
+                      "text-info": this.findUserLike(post.likes)
+                    })}
+                  />
+                  <span className="badge badge-light">{post.likes.length}</span>
+                </button>
+                <button type="button" className="btn btn-light mr-1" onClick={this.onRemoveLikeClick.bind(this, post._id) }>
+                  <i className="text-secondary fas fa-thumbs-down" />
+                </button>
+                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
+                  Comments
+                </Link>
+                { post.user === auth.user.id ? (
+                  <button
+                    className="btn btn-danger"
+                    onClick={this.onDeleteClick.bind(this, post._id)}
+                  >
+                    <i className="fas fa-times" />
+                  </button>
+                ) : null }
+              </span>
             ) : null }
           </div>
         </div>
       </div>
     );
   };
+};
+
+PostItem.defaultProps = {
+  showActions: true
 };
 
 PostItem.propTypes = {
